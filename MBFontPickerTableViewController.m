@@ -10,6 +10,9 @@
 
 @interface MBFontPickerTableViewController ()
 @property (strong, nonatomic) NSArray *fontNames;
+
+@property (strong, nonatomic) NSDictionary *defaultFontsDictionary;
+@property (strong, nonatomic) NSDictionary *displayNamesDictionary;
 @end
 
 @implementation MBFontPickerTableViewController
@@ -109,14 +112,36 @@
 
 #pragma mark - Font Names
 
+- (NSDictionary *)displayNamesDictionary {
+    if (!_displayNamesDictionary) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"displayNameForFontName" ofType:@"plist"];
+        if (path) {
+            _displayNamesDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
+        }
+    }
+    return _displayNamesDictionary;
+}
+
+
 - (NSString *)displayNameForFontName:(NSString *)fontName {
-    return nil;
+    return [self.displayNamesDictionary objectForKey:fontName];;
 }
 
 #pragma mark - Main Font for Family Name
 
+
+- (NSDictionary *)defaultFontsDictionary {
+    if (!_defaultFontsDictionary) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"defaultFontForFamilyName" ofType:@"plist"];
+        if (path) {
+            _defaultFontsDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
+        }
+    }
+    return _defaultFontsDictionary;
+}
+
 - (NSString *)defaultFontNameForFamilyName:(NSString *)familyName {
-    return nil;
+    return [self.defaultFontsDictionary objectForKey:familyName];
 }
 
 @end
