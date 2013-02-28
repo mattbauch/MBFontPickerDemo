@@ -24,6 +24,8 @@
 		3961FD0E16DF6760005CF243 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3961FD0C16DF6760005CF243 /* InfoPlist.strings */; };
 		3961FD1116DF6760005CF243 /* MBFontPickerTableViewControllerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3961FD1016DF6760005CF243 /* MBFontPickerTableViewControllerDemoTests.m */; };
 		3961FD1C16DF678A005CF243 /* MBFontPickerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3961FD1B16DF678A005CF243 /* MBFontPickerTableViewController.m */; };
+		3961FD2016DF77C6005CF243 /* displayNameForFontName.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3961FD1E16DF77C6005CF243 /* displayNameForFontName.plist */; };
+		3961FD2116DF77C6005CF243 /* defaultFontForFamilyName.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3961FD1F16DF77C6005CF243 /* defaultFontForFamilyName.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,8 +61,10 @@
 		3961FD0D16DF6760005CF243 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3961FD0F16DF6760005CF243 /* MBFontPickerTableViewControllerDemoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBFontPickerTableViewControllerDemoTests.h; sourceTree = "<group>"; };
 		3961FD1016DF6760005CF243 /* MBFontPickerTableViewControllerDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBFontPickerTableViewControllerDemoTests.m; sourceTree = "<group>"; };
-		3961FD1A16DF678A005CF243 /* MBFontPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBFontPickerTableViewController.h; path = ../../MBFontPickerTableViewController.h; sourceTree = "<group>"; };
-		3961FD1B16DF678A005CF243 /* MBFontPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBFontPickerTableViewController.m; path = ../../MBFontPickerTableViewController.m; sourceTree = "<group>"; };
+		3961FD1A16DF678A005CF243 /* MBFontPickerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBFontPickerTableViewController.h; path = ../MBFontPickerTableViewController.h; sourceTree = "<group>"; };
+		3961FD1B16DF678A005CF243 /* MBFontPickerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBFontPickerTableViewController.m; path = ../MBFontPickerTableViewController.m; sourceTree = "<group>"; };
+		3961FD1E16DF77C6005CF243 /* displayNameForFontName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = displayNameForFontName.plist; path = ../displayNameForFontName.plist; sourceTree = "<group>"; };
+		3961FD1F16DF77C6005CF243 /* defaultFontForFamilyName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultFontForFamilyName.plist; path = ../defaultFontForFamilyName.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 		3961FCD316DF675F005CF243 = {
 			isa = PBXGroup;
 			children = (
+				3961FD1D16DF77AE005CF243 /* FontPicker */,
 				3961FCE516DF675F005CF243 /* MBFontPickerTableViewControllerDemo */,
 				3961FD0916DF6760005CF243 /* MBFontPickerTableViewControllerDemoTests */,
 				3961FCDE16DF675F005CF243 /* Frameworks */,
@@ -125,8 +130,6 @@
 				3961FCF716DF6760005CF243 /* MainStoryboard.storyboard */,
 				3961FCFA16DF6760005CF243 /* MBViewController.h */,
 				3961FCFB16DF6760005CF243 /* MBViewController.m */,
-				3961FD1A16DF678A005CF243 /* MBFontPickerTableViewController.h */,
-				3961FD1B16DF678A005CF243 /* MBFontPickerTableViewController.m */,
 				3961FCE616DF675F005CF243 /* Supporting Files */,
 			);
 			path = MBFontPickerTableViewControllerDemo;
@@ -163,6 +166,17 @@
 				3961FD0C16DF6760005CF243 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3961FD1D16DF77AE005CF243 /* FontPicker */ = {
+			isa = PBXGroup;
+			children = (
+				3961FD1E16DF77C6005CF243 /* displayNameForFontName.plist */,
+				3961FD1F16DF77C6005CF243 /* defaultFontForFamilyName.plist */,
+				3961FD1A16DF678A005CF243 /* MBFontPickerTableViewController.h */,
+				3961FD1B16DF678A005CF243 /* MBFontPickerTableViewController.m */,
+			);
+			name = FontPicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +256,8 @@
 				3961FCF416DF6760005CF243 /* Default@2x.png in Resources */,
 				3961FCF616DF6760005CF243 /* Default-568h@2x.png in Resources */,
 				3961FCF916DF6760005CF243 /* MainStoryboard.storyboard in Resources */,
+				3961FD2016DF77C6005CF243 /* displayNameForFontName.plist in Resources */,
+				3961FD2116DF77C6005CF243 /* defaultFontForFamilyName.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,36 @@
 
 @implementation MBAppDelegate
 
+- (void)createDisplayNameDictionary {
+    NSArray *familyNames = [UIFont familyNames];
+    
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithCapacity:[familyNames count]];
+    
+    for (NSString *familyName in familyNames) {
+        NSArray *fontNames = [UIFont fontNamesForFamilyName:familyName];
+        
+        NSMutableDictionary *fontNamesDict = [NSMutableDictionary dictionaryWithCapacity:[fontNames count]];
+        for (NSString *fontName in fontNames) {
+            [fontNamesDict setObject:fontName forKey:fontName];
+        }
+        
+        [dictionary setObject:fontNamesDict forKey:familyName];
+    }
+    [dictionary writeToFile:@"/tmp/displayNameForFontName.plist" atomically:YES];
+}
+
+- (void)createDefaultFontDictionary {
+    NSArray *familyNames = [UIFont familyNames];
+    
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithCapacity:[familyNames count]];
+    
+    for (NSString *familyName in familyNames) {
+        NSArray *fontNames = [UIFont fontNamesForFamilyName:familyName];
+        [dictionary setObject:fontNames[0] forKey:familyName];
+    }
+    [dictionary writeToFile:@"/tmp/defaultFontForFamilyName.plist" atomically:YES];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
