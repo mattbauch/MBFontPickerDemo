@@ -10,7 +10,7 @@
 
 @interface MBFontPickerTableViewController ()
 @property (strong, nonatomic) NSArray *fontNames;
-
+@property (strong, nonatomic) NSString *selectedFontFamily;
 @end
 
 @implementation MBFontPickerTableViewController
@@ -44,6 +44,19 @@
     return _fontNames;
 }
 
+- (void)setSelectedFont:(NSString *)selectedFont {
+    _selectedFont = [selectedFont copy];
+    _selectedFontFamily = nil;
+    for (NSString *fontFamilyName in [UIFont familyNames]) {
+        NSArray *fontNames = [UIFont fontNamesForFamilyName:fontFamilyName];
+        if ([fontNames containsObject:selectedFont]) {
+            _selectedFontFamily = fontFamilyName;
+            break;
+        }
+    }
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -71,7 +84,13 @@
         }
         cell.textLabel.text = displayName;
         cell.textLabel.font = [UIFont fontWithName:fontName size:20.f];
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        if ([fontName isEqualToString:self.selectedFont]) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        else {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
     }
     else {
         NSString *fontFamilyName = self.fontNames[indexPath.row];
@@ -82,12 +101,20 @@
         }
         cell.textLabel.text = fontFamilyName;
         cell.textLabel.font = [UIFont fontWithName:defaultFontName size:20.f];
+        
         if ([[UIFont fontNamesForFamilyName:fontFamilyName] count] > 1) {
             // if there are at least two fonts show accessory button so we can choose them
             cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         }
         else {
             cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        
+        if ([fontFamilyName isEqualToString:self.selectedFontFamily]) {
+            cell.imageView.image = [UIImage imageNamed:@"checkmark"];
+        }
+        else {
+            cell.imageView.image = nil;
         }
     }
     return cell;
@@ -115,6 +142,7 @@
     fontPicker.fontFamilyName = fontFamilyName;
     fontPicker.delegate = self.delegate;
     fontPicker.title = self.title;
+    fontPicker.selectedFont = self.selectedFont;
     [self.navigationController pushViewController:fontPicker animated:YES];
 }
 
