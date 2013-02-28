@@ -115,7 +115,7 @@
 
 #pragma mark - Main Font for Family Name
 
-- (UIFont *)fontForFamilyName:(NSString *)familyName {
+- (NSString *)defaultFontNameForFamilyName:(NSString *)familyName {
     return nil;
 }
 
