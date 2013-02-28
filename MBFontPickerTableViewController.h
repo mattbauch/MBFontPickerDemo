@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MBFontPickerTableViewController : UITableViewController
+@class MBFontPickerTableViewController;
 
+@protocol MBFontPickerDelegate <NSObject>
+- (void)fontPicker:(MBFontPickerTableViewController *)fontPicker didSelectFontWithName:(NSString *)fontName;
+@end
+
+@interface MBFontPickerTableViewController : UITableViewController
+@property (weak, nonatomic) id <MBFontPickerDelegate> delegate;
+
+// if fontFamilyName is nil FontPicker will show family names
+@property (copy, nonatomic) NSString *fontFamilyName;
+
+- (NSString *)displayNameForFontName:(NSString *)fontName;
 @end
