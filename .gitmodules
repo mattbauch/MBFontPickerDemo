@@ -1,0 +1,3 @@
+[submodule "MBFontPickerTableViewController"]
+	path = MBFontPickerTableViewController
+	url = git@github.com:mattbauch/MBFontPickerTableViewController.git
