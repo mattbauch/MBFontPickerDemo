@@ -73,7 +73,18 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 14, 14, 14)];
+        imageView.tag = 2001;
+        [cell.contentView addSubview:imageView];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(34, 0, 276, 43)];
+        label.tag = 2002;
+        label.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        [cell.contentView addSubview:label];
     }
+    UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:2001];
+    UILabel *label = (UILabel *)[cell.contentView viewWithTag:2002];
+    
     NSString *fontName = nil;
     if (self.fontFamilyName) {
         fontName = self.fontNames[indexPath.row];
@@ -82,14 +93,15 @@
             // display name not found in plist. use font name
             displayName = fontName;
         }
-        cell.textLabel.text = displayName;
-        cell.textLabel.font = [UIFont fontWithName:fontName size:20.f];
+        label.text = displayName;
+        label.font = [UIFont fontWithName:fontName size:20.f];
+        cell.accessoryType = UITableViewCellAccessoryNone;
         
         if ([fontName isEqualToString:self.selectedFont]) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            imageView.image = [UIImage imageNamed:@"checkmark"];
         }
         else {
-            cell.accessoryType = UITableViewCellAccessoryNone;
+            imageView.image = nil;
         }
     }
     else {
@@ -99,8 +111,8 @@
             // default font not found in plist. use first font
             defaultFontName = [UIFont fontNamesForFamilyName:fontFamilyName][0];
         }
-        cell.textLabel.text = fontFamilyName;
-        cell.textLabel.font = [UIFont fontWithName:defaultFontName size:20.f];
+        label.text = fontFamilyName;
+        label.font = [UIFont fontWithName:defaultFontName size:20.f];
         
         if ([[UIFont fontNamesForFamilyName:fontFamilyName] count] > 1) {
             // if there are at least two fonts show accessory button so we can choose them
@@ -111,10 +123,10 @@
         }
         
         if ([fontFamilyName isEqualToString:self.selectedFontFamily]) {
-            cell.imageView.image = [UIImage imageNamed:@"checkmark"];
+            imageView.image = [UIImage imageNamed:@"checkmark"];
         }
         else {
-            cell.imageView.image = nil;
+            imageView.image = nil;
         }
     }
     return cell;
