@@ -10,9 +10,7 @@
 
 @interface MBFontPickerTableViewController ()
 @property (strong, nonatomic) NSArray *fontNames;
-
-@property (strong, nonatomic) NSDictionary *defaultFontsDictionary;
-@property (strong, nonatomic) NSDictionary *displayNamesDictionary;
+@property (strong, nonatomic) NSString *selectedFontFamily;
 @end
 
 @implementation MBFontPickerTableViewController
@@ -46,6 +44,19 @@
     return _fontNames;
 }
 
+- (void)setSelectedFont:(NSString *)selectedFont {
+    _selectedFont = [selectedFont copy];
+    _selectedFontFamily = nil;
+    for (NSString *fontFamilyName in [UIFont familyNames]) {
+        NSArray *fontNames = [UIFont fontNamesForFamilyName:fontFamilyName];
+        if ([fontNames containsObject:selectedFont]) {
+            _selectedFontFamily = fontFamilyName;
+            break;
+        }
+    }
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -62,34 +73,60 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 14, 14, 14)];
+        imageView.tag = 2001;
+        [cell.contentView addSubview:imageView];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(34, 0, 276, 43)];
+        label.tag = 2002;
+        label.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        [cell.contentView addSubview:label];
     }
+    UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:2001];
+    UILabel *label = (UILabel *)[cell.contentView viewWithTag:2002];
+    
     NSString *fontName = nil;
     if (self.fontFamilyName) {
         fontName = self.fontNames[indexPath.row];
-        NSString *displayName = [self displayNameForFontName:fontName];
+        NSString *displayName = [[self class] displayNameForFontName:fontName];
         if (!displayName) {
             // display name not found in plist. use font name
             displayName = fontName;
         }
-        cell.textLabel.text = displayName;
-        cell.textLabel.font = [UIFont fontWithName:fontName size:20.f];
+        label.text = displayName;
+        label.font = [UIFont fontWithName:fontName size:20.f];
         cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        if ([fontName isEqualToString:self.selectedFont]) {
+            imageView.image = [UIImage imageNamed:@"checkmark"];
+        }
+        else {
+            imageView.image = nil;
+        }
     }
     else {
         NSString *fontFamilyName = self.fontNames[indexPath.row];
-        NSString *defaultFontName = [self defaultFontNameForFamilyName:fontFamilyName];
+        NSString *defaultFontName = [[self class] defaultFontNameForFamilyName:fontFamilyName];
         if (!defaultFontName) {
             // default font not found in plist. use first font
             defaultFontName = [UIFont fontNamesForFamilyName:fontFamilyName][0];
         }
-        cell.textLabel.text = fontFamilyName;
-        cell.textLabel.font = [UIFont fontWithName:defaultFontName size:20.f];
+        label.text = fontFamilyName;
+        label.font = [UIFont fontWithName:defaultFontName size:20.f];
+        
         if ([[UIFont fontNamesForFamilyName:fontFamilyName] count] > 1) {
             // if there are at least two fonts show accessory button so we can choose them
             cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         }
         else {
             cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        
+        if ([fontFamilyName isEqualToString:self.selectedFontFamily]) {
+            imageView.image = [UIImage imageNamed:@"checkmark"];
+        }
+        else {
+            imageView.image = nil;
         }
     }
     return cell;
@@ -105,7 +142,7 @@
     }
     else {
         NSString *fontFamilyName = self.fontNames[indexPath.row];
-        fontName = [self defaultFontNameForFamilyName:fontFamilyName];
+        fontName = [[self class] defaultFontNameForFamilyName:fontFamilyName];
     }
     [self.delegate fontPicker:self didSelectFontWithName:fontName];
 }
@@ -117,13 +154,15 @@
     fontPicker.fontFamilyName = fontFamilyName;
     fontPicker.delegate = self.delegate;
     fontPicker.title = self.title;
+    fontPicker.selectedFont = self.selectedFont;
     [self.navigationController pushViewController:fontPicker animated:YES];
 }
 
 #pragma mark - Font Names
 
-- (NSDictionary *)displayNamesDictionary {
-    if (!_displayNamesDictionary) {
++ (NSDictionary *)displayNamesDictionary {
+    static NSDictionary *displayNamesDictionary;
+    if (!displayNamesDictionary) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"displayNameForFontName" ofType:@"plist"];
         if (path) {
             NSDictionary *displayNamesOnDisc = [NSDictionary dictionaryWithContentsOfFile:path];
@@ -135,31 +174,32 @@
                     [temp setObject:fontFamilyDictionary[fontName] forKey:fontName];
                 }
             }
-            _displayNamesDictionary = [temp copy];
+            displayNamesDictionary = [temp copy];
         }
     }
-    return _displayNamesDictionary;
+    return displayNamesDictionary;
 }
 
 
-- (NSString *)displayNameForFontName:(NSString *)fontName {
++ (NSString *)displayNameForFontName:(NSString *)fontName {
     return [self.displayNamesDictionary objectForKey:fontName];;
 }
 
 #pragma mark - Main Font for Family Name
 
 
-- (NSDictionary *)defaultFontsDictionary {
-    if (!_defaultFontsDictionary) {
++ (NSDictionary *)defaultFontsDictionary {
+    static NSDictionary *defaultFontsDictionary;
+    if (!defaultFontsDictionary) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"defaultFontForFamilyName" ofType:@"plist"];
         if (path) {
-            _defaultFontsDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
+            defaultFontsDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
         }
     }
-    return _defaultFontsDictionary;
+    return defaultFontsDictionary;
 }
 
-- (NSString *)defaultFontNameForFamilyName:(NSString *)familyName {
++ (NSString *)defaultFontNameForFamilyName:(NSString *)familyName {
     return [self.defaultFontsDictionary objectForKey:familyName];
 }
 
