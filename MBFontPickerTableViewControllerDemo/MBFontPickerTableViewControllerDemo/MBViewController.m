@@ -22,18 +22,6 @@
 
 @implementation MBViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (IBAction)buttonPressed:(UIButton *)sender {
     if (sender == self.selectFontButton) {
         MBFontPickerTableViewController *fontPickerTableView = [[MBFontPickerTableViewController alloc] initWithStyle:UITableViewStylePlain];
@@ -52,10 +40,6 @@
     self.displayNameLabel.text = [fontPicker displayNameForFontName:fontName];
     self.fontNameLabel.font = font;
     self.fontNameLabel.text = fontName;
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)fontPickerDidCancel:(MBFontPickerTableViewController *)fontPicker {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
