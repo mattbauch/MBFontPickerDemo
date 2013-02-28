@@ -5,7 +5,7 @@
 	<key>Academy Engraved LET</key>
 	<dict>
 		<key>AcademyEngravedLetPlain</key>
-		<string>AcademyEngravedLetPlain</string>
+		<string>Academy Engraved LET</string>
 	</dict>
 	<key>American Typewriter</key>
 	<dict>
@@ -163,35 +163,35 @@
 	<key>Bodoni 72</key>
 	<dict>
 		<key>BodoniSvtyTwoITCTT-Bold</key>
-		<string>BodoniSvtyTwoITCTT-Bold</string>
+		<string>Bodoni 72 Bold</string>
 		<key>BodoniSvtyTwoITCTT-Book</key>
-		<string>BodoniSvtyTwoITCTT-Book</string>
+		<string>Bodoni 72 Book</string>
 		<key>BodoniSvtyTwoITCTT-BookIta</key>
-		<string>BodoniSvtyTwoITCTT-BookIta</string>
+		<string>Bodoni 72 Book Italic</string>
 	</dict>
 	<key>Bodoni 72 Oldstyle</key>
 	<dict>
 		<key>BodoniSvtyTwoOSITCTT-Bold</key>
-		<string>BodoniSvtyTwoOSITCTT-Bold</string>
+		<string>Bodoni 72  Oldstyle Bold</string>
 		<key>BodoniSvtyTwoOSITCTT-Book</key>
-		<string>BodoniSvtyTwoOSITCTT-Book</string>
+		<string>Bodoni 72  Oldstyle Book</string>
 		<key>BodoniSvtyTwoOSITCTT-BookIt</key>
-		<string>BodoniSvtyTwoOSITCTT-BookIt</string>
+		<string>Bodoni 72  Oldstyle Book Italic</string>
 	</dict>
 	<key>Bodoni 72 Smallcaps</key>
 	<dict>
 		<key>BodoniSvtyTwoSCITCTT-Book</key>
-		<string>BodoniSvtyTwoSCITCTT-Book</string>
+		<string>Bodoni 72 Smallcaps</string>
 	</dict>
 	<key>Bodoni Ornaments</key>
 	<dict>
 		<key>BodoniOrnamentsITCTT</key>
-		<string>BodoniOrnamentsITCTT</string>
+		<string>Bodoni Ornaments</string>
 	</dict>
 	<key>Bradley Hand</key>
 	<dict>
 		<key>BradleyHandITCTT-Bold</key>
-		<string>BradleyHandITCTT-Bold</string>
+		<string>Bradley Hand</string>
 	</dict>
 	<key>Chalkboard SE</key>
 	<dict>
@@ -416,7 +416,7 @@
 		<key>Kailasa</key>
 		<string>Kailasa Regular</string>
 		<key>Kailasa-Bold</key>
-		<string>Kailasa-Bold</string>
+		<string>Kailasa Bold</string>
 	</dict>
 	<key>Kannada Sangam MN</key>
 	<dict>
@@ -496,7 +496,7 @@
 	<key>Party LET</key>
 	<dict>
 		<key>PartyLetPlain</key>
-		<string>PartyLetPlain</string>
+		<string>Party LET</string>
 	</dict>
 	<key>Sinhala Sangam MN</key>
 	<dict>
@@ -510,9 +510,9 @@
 		<key>SnellRoundhand</key>
 		<string>SnellRoundhand</string>
 		<key>SnellRoundhand-Black</key>
-		<string>SnellRoundhand-Black</string>
+		<string>SnellRoundhand Black</string>
 		<key>SnellRoundhand-Bold</key>
-		<string>SnellRoundhand-Bold</string>
+		<string>SnellRoundhand Bold</string>
 	</dict>
 	<key>Symbol</key>
 	<dict>
