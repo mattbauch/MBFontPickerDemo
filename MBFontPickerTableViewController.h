@@ -20,5 +20,5 @@
 // if fontFamilyName is nil FontPicker will show family names
 @property (copy, nonatomic) NSString *fontFamilyName;
 
-- (NSString *)displayNameForFontName:(NSString *)fontName;
++ (NSString *)displayNameForFontName:(NSString *)fontName;
 @end
