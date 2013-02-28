@@ -79,7 +79,7 @@
         NSString *fontFamilyName = self.fontNames[indexPath.row];
         NSString *defaultFontName = [self defaultFontNameForFamilyName:fontFamilyName];
         if (!defaultFontName) {
-            // font not found in plist. use first font
+            // default font not found in plist. use first font
             defaultFontName = [UIFont fontNamesForFamilyName:fontFamilyName][0];
         }
         cell.textLabel.text = fontFamilyName;
@@ -105,8 +105,7 @@
     }
     else {
         NSString *fontFamilyName = self.fontNames[indexPath.row];
-        NSArray *fontNames = [UIFont fontNamesForFamilyName:fontFamilyName];
-        fontName = fontNames[0];
+        fontName = [self defaultFontNameForFamilyName:fontFamilyName];
     }
     [self.delegate fontPicker:self didSelectFontWithName:fontName];
 }
