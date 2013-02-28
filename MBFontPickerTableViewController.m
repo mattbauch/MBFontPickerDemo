@@ -127,7 +127,16 @@
     if (!_displayNamesDictionary) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"displayNameForFontName" ofType:@"plist"];
         if (path) {
-            _displayNamesDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
+            NSDictionary *displayNamesOnDisc = [NSDictionary dictionaryWithContentsOfFile:path];
+            
+            NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithCapacity:200];
+            for (NSString *fontFamilyName in displayNamesOnDisc) {
+                NSDictionary *fontFamilyDictionary = displayNamesOnDisc[fontFamilyName];
+                for (NSString *fontName in fontFamilyDictionary) {
+                    [temp setObject:fontFamilyDictionary[fontName] forKey:fontName];
+                }
+            }
+            _displayNamesDictionary = [temp copy];
         }
     }
     return _displayNamesDictionary;
