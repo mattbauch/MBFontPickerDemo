@@ -66,21 +66,32 @@
     NSString *fontName = nil;
     if (self.fontFamilyName) {
         fontName = self.fontNames[indexPath.row];
+        NSString *displayName = [self displayNameForFontName:fontName];
+        if (!displayName) {
+            // display name not found in plist. use font name
+            displayName = fontName;
+        }
+        cell.textLabel.text = displayName;
+        cell.textLabel.font = [UIFont fontWithName:fontName size:20.f];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     else {
         NSString *fontFamilyName = self.fontNames[indexPath.row];
-        NSArray *fontNames = [UIFont fontNamesForFamilyName:fontFamilyName];
-        fontName = fontNames[0];
-        if ([fontNames count] > 1) {
+        NSString *defaultFontName = [self defaultFontNameForFamilyName:fontFamilyName];
+        if (!defaultFontName) {
+            // font not found in plist. use first font
+            defaultFontName = [UIFont fontNamesForFamilyName:fontFamilyName][0];
+        }
+        cell.textLabel.text = fontFamilyName;
+        cell.textLabel.font = [UIFont fontWithName:defaultFontName size:20.f];
+        if ([[UIFont fontNamesForFamilyName:fontFamilyName] count] > 1) {
+            // if there are at least two fonts show accessory button so we can choose them
             cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         }
         else {
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
     }
-    cell.textLabel.text = fontName;
-    cell.textLabel.font = [UIFont fontWithName:fontName size:20.f];
     return cell;
 }
 
