@@ -28,6 +28,10 @@
 		3961FD2116DF77C6005CF243 /* defaultFontForFamilyName.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3961FD1F16DF77C6005CF243 /* defaultFontForFamilyName.plist */; };
 		3961FD4716DF8CAB005CF243 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3961FD4516DF8CAB005CF243 /* checkmark.png */; };
 		3961FD4816DF8CAB005CF243 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3961FD4616DF8CAB005CF243 /* checkmark@2x.png */; };
+		39B0269316E9DFC0002BA4FF /* Ubuntu_Font-LICENCE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 39B0268F16E9DFC0002BA4FF /* Ubuntu_Font-LICENCE.txt */; };
+		39B0269416E9DFC0002BA4FF /* Ubuntu-M.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39B0269016E9DFC0002BA4FF /* Ubuntu-M.ttf */; };
+		39B0269516E9DFC0002BA4FF /* Ubuntu-R.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39B0269116E9DFC0002BA4FF /* Ubuntu-R.ttf */; };
+		39B0269616E9DFC0002BA4FF /* Ubuntu-B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39B0269216E9DFC0002BA4FF /* Ubuntu-B.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +73,10 @@
 		3961FD1F16DF77C6005CF243 /* defaultFontForFamilyName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaultFontForFamilyName.plist; path = ../MBFontPickerTableViewController/defaultFontForFamilyName.plist; sourceTree = "<group>"; };
 		3961FD4516DF8CAB005CF243 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkmark.png; path = ../MBFontPickerTableViewController/checkmark.png; sourceTree = "<group>"; };
 		3961FD4616DF8CAB005CF243 /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkmark@2x.png"; path = "../MBFontPickerTableViewController/checkmark@2x.png"; sourceTree = "<group>"; };
+		39B0268F16E9DFC0002BA4FF /* Ubuntu_Font-LICENCE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Ubuntu_Font-LICENCE.txt"; sourceTree = "<group>"; };
+		39B0269016E9DFC0002BA4FF /* Ubuntu-M.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-M.ttf"; sourceTree = "<group>"; };
+		39B0269116E9DFC0002BA4FF /* Ubuntu-R.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-R.ttf"; sourceTree = "<group>"; };
+		39B0269216E9DFC0002BA4FF /* Ubuntu-B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-B.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +137,10 @@
 		3961FCE516DF675F005CF243 /* MBFontPickerTableViewControllerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				39B0268F16E9DFC0002BA4FF /* Ubuntu_Font-LICENCE.txt */,
+				39B0269016E9DFC0002BA4FF /* Ubuntu-M.ttf */,
+				39B0269116E9DFC0002BA4FF /* Ubuntu-R.ttf */,
+				39B0269216E9DFC0002BA4FF /* Ubuntu-B.ttf */,
 				3961FCEE16DF675F005CF243 /* MBAppDelegate.h */,
 				3961FCEF16DF675F005CF243 /* MBAppDelegate.m */,
 				3961FCF716DF6760005CF243 /* MainStoryboard.storyboard */,
@@ -266,6 +278,10 @@
 				3961FD2116DF77C6005CF243 /* defaultFontForFamilyName.plist in Resources */,
 				3961FD4716DF8CAB005CF243 /* checkmark.png in Resources */,
 				3961FD4816DF8CAB005CF243 /* checkmark@2x.png in Resources */,
+				39B0269316E9DFC0002BA4FF /* Ubuntu_Font-LICENCE.txt in Resources */,
+				39B0269416E9DFC0002BA4FF /* Ubuntu-M.ttf in Resources */,
+				39B0269516E9DFC0002BA4FF /* Ubuntu-R.ttf in Resources */,
+				39B0269616E9DFC0002BA4FF /* Ubuntu-B.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
