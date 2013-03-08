@@ -22,13 +22,21 @@ static NSString * const MBUDFontKey = @"fontName";
 
 @end
 
-@implementation MBViewController
+@implementation MBViewController {
+    NSDictionary *_defaultFontNames;
+    NSDictionary *_displayFontNames;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _defaultFontNames = @{ @"Ubuntu" : @"Ubuntu" };
+    _displayFontNames = @{ @"Ubuntu" : @"Ubuntu Regular",
+                           @"Ubuntu-Medium" : @"Ubuntu Medium",
+                           @"Ubuntu-Bold" : @"Ubuntu Bold" };
+
     NSString *fontName = [[NSUserDefaults standardUserDefaults] objectForKey:MBUDFontKey];
     if (!fontName) {
-        fontName = [[UIFont boldSystemFontOfSize:17] fontName];
+        fontName = [[UIFont fontWithName:@"Ubuntu-Medium" size:17] fontName];
     }
     [self configureViewForFontName:fontName];
 }
@@ -39,6 +47,11 @@ static NSString * const MBUDFontKey = @"fontName";
         fontPickerTableView.delegate = self;
         fontPickerTableView.title = @"Select Font";
         fontPickerTableView.selectedFont = [self.fontNameLabel.font fontName];
+        fontPickerTableView.scrollToFontWhenViewWillAppear = YES;
+        
+        fontPickerTableView.customDefaultFontNames = _defaultFontNames;
+        fontPickerTableView.customDisplayFontNames = _displayFontNames;
+
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:fontPickerTableView];
         [self presentViewController:navController animated:YES completion:nil];
     }
@@ -47,7 +60,7 @@ static NSString * const MBUDFontKey = @"fontName";
 - (void)configureViewForFontName:(NSString *)fontName {
     UIFont *font = [UIFont fontWithName:fontName size:[self.displayNameLabel.font pointSize]];
     self.displayNameLabel.font = font;
-    self.displayNameLabel.text = [MBFontPickerTableViewController displayNameForFontName:fontName];
+    self.displayNameLabel.text = [MBFontPickerTableViewController displayNameForFontName:fontName customFontList:_displayFontNames];
     self.fontNameLabel.font = font;
     self.fontNameLabel.text = fontName;
 }
